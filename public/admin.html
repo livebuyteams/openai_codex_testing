@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <title>新增商品</title>
+</head>
+<body>
+  <h1>新增商品</h1>
+  <form id="productForm">
+    <label>
+      商品名稱: <input type="text" id="name" required />
+    </label>
+    <br />
+    <label>
+      價格: <input type="number" id="price" required />
+    </label>
+    <br />
+    <button type="submit">送出</button>
+  </form>
+  <p id="msg"></p>
+  <a href="/products">查看商品列表</a>
+  <script>
+    const form = document.getElementById('productForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const price = document.getElementById('price').value;
+      const res = await fetch('/api/products', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, price })
+      });
+      if (res.ok) {
+        document.getElementById('msg').textContent = '新增成功';
+        form.reset();
+      } else {
+        document.getElementById('msg').textContent = '新增失敗';
+      }
+    });
+  </script>
+</body>
+</html>
+

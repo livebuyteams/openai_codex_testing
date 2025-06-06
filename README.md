@@ -11,3 +11,6 @@ node index.js
 ```
 
 伺服器啟動後，可透過 <http://localhost:3000> 造訪首頁，並瀏覽商品列表。
+
+若要新增商品，可前往 <http://localhost:3000/admin> 使用簡易後臺介面提交商品名稱與價格，
+資料會儲存在 `data/products.json` 中並即時更新商品列表。
